@@ -17,19 +17,14 @@
                         </router-link>
                     </ul>
                     <strong class="navbar-text navbar-right">
-                    Funds: {{ funds | currency}}
+                        Funds: {{ funds | currency}}
                     </strong>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" @click="endDay">End Day</a>
                         </li>
-                        <li role="presentation" class="dropdown" 
-                        :class="{open: isDropdown}"
-                        @click="isDropdown = !isDropdown">
-                            <a class="dropdown-toggle" 
-                            data-toggle="dropdown" href="#" 
-                            role="button" aria-haspopup="true" 
-                            aria-expanded="false">Save or Load
+                        <li role="presentation" class="dropdown" :class="{open: isDropdown}" @click="isDropdown = !isDropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Save or Load
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -69,6 +64,10 @@ export default {
         ...mapActions({
             'endDay': 'randomizeStocks'
         }),
+        
+        endDay() {
+            this.endDay;
+        },
 
         saveData() {
             const data = {
@@ -82,10 +81,6 @@ export default {
         loadData() {
 
         }
-    },
-
-    endDay() {
-        this.endDay;
     }
 }
 </script>
