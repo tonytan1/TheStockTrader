@@ -17,7 +17,7 @@
                         </router-link>
                     </ul>
                     <strong class="navbar-text navbar-right">
-                    Funds: {{ funds }}
+                    Funds: {{ funds | currency}}
                     </strong>
                     <ul class="nav navbar-nav navbar-right">
                         <li>

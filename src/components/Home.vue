@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Trade or view you Portfolio</h1>
-<p> Your Funds: {{ funds }}</p>
+<p> Your Funds: {{ funds | currency}}</p>
 </div>
 </template>
 
