@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-export const localData = ({commit}) => {
+export const loadData = ({commit}) => {
     Vue.http.get('data.json')
         .then(response => response.json())
         .then(data => {
@@ -9,9 +9,11 @@ export const localData = ({commit}) => {
                 const funds = data.funds;
                 const stockPortfolio = data.stockPortfolio;
 
+                console.log(funds);
+                
                 const portfolio = {
-                    stockPortfolio,
-                    funds
+                    funds,
+                    stockPortfolio
                 };
 
                 commit('SET_STOCKS', stocks);

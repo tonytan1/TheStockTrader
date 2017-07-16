@@ -64,7 +64,7 @@ export default {
         ...mapActions({
             'endDay': 'randomizeStocks'
         }),
-        
+
         endDay() {
             this.endDay;
         },
@@ -79,7 +79,7 @@ export default {
         },
 
         loadData() {
-
+            this.$store.dispatch('loadData');
         }
     }
 }
