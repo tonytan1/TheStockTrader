@@ -8,13 +8,10 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input type="number" class="form-control" 
-                    placeholder="Quantity" v-model="quantity">
+                    <input type="number" class="form-control" v-model="quantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success"
-                    @click="buyStock"
-                    v-bind:disabled="quantity <= 0 || !Number.isInteger(quantity)">Buy</button>
+                    <button class="btn btn-success" placeholder="Quantity" @click="buyStock" :disabled="parseInt(quantity)<=0">Buy</button>
                 </div>
             </div>
         </div>
@@ -31,16 +28,19 @@ export default {
             quantity: 0
         }
     },
-
     methods: {
-        buyStock(){
+        buyStock() {
             const order = {
                 stockId: this.stock.id,
                 stockPrice: this.stock.price,
                 quantity: this.quantity
             };
-            console.log(order);
+            this.$store.dispatch('buyStock', order);
             this.quantity = 0;
+        },
+
+        validInput(input) {
+            return parseInt(input) <= 0 || !Number.isInteger(input)
         }
     }
 }
