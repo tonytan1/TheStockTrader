@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-7 col-md-5">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ stock.name }}
@@ -8,10 +8,13 @@
             </div>
             <div class="panel-body">
                 <div class="pull-left">
-                    <input type="number" class="form-control" v-model="quantity">
+                    <input type="number" class="form-control" v-model="quantity" 
+                    :class="{ danger: insufficientFunds}">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success" placeholder="Quantity" @click="buyStock" :disabled="parseInt(quantity)<=0">Buy</button>
+                    <button class="btn btn-success" placeholder="Quantity" @click="buyStock" 
+                    :disabled="parseInt(quantity)<=0 || insufficientFunds">
+                    {{insufficientFunds? "Insufficient Funds": "Buy"}}</button>
                 </div>
             </div>
         </div>
@@ -28,6 +31,15 @@ export default {
             quantity: 0
         }
     },
+    computed: {
+        funds() {
+            return this.$store.getters.funds;
+        },
+        insufficientFunds() {
+            return this.stock.price * this.quantity > this.funds;
+        }
+    },
+
     methods: {
         buyStock() {
             const order = {
@@ -45,4 +57,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .danger {
+        border: 1px solid red;
+    }
+</style>
+
 
