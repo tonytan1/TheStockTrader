@@ -23,14 +23,13 @@
                         <li>
                             <a href="#" @click="endDay">End Day</a>
                         </li>
-                        <li>
-                            <a href="#">Save Data</a>
-                        </li>
-                        <li>
-                            <a href="#">Load Data</a>
-                        </li>
-                        <!--<li role="presentation" class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Save or Load
+                        <li role="presentation" class="dropdown" 
+                        :class="{open: isDropdown}"
+                        @click="isDropdown = !isDropdown">
+                            <a class="dropdown-toggle" 
+                            data-toggle="dropdown" href="#" 
+                            role="button" aria-haspopup="true" 
+                            aria-expanded="false">Save or Load
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -41,7 +40,7 @@
                                     <a href="#">Load Data</a>
                                 </li>
                             </ul>
-                        </li>-->
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,6 +53,12 @@
 import { mapActions } from 'vuex';
 
 export default {
+    data() {
+        return {
+            isDropdown: false
+        }
+    },
+
     computed: {
         funds() {
             return this.$store.getters.funds;
